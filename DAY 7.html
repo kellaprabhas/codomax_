@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio -Kella prabhas</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;font-family:Arial,sans-serif}
+body{background:#7da2ed}
+header{position:sticky;top:0;background:linear-gradient(90deg,#8b5cf6,#7c3aed);padding:18px;color:#fff;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
+header h2{font-size:28px}
+nav a{color:#fff;text-decoration:none;margin:10px;font-weight:bold}
+section{max-width:1100px;margin:30px auto;background:#fff;padding:25px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,.15)}
+h1,h2{text-align:center;margin-bottom:20px}
+.hero{text-align:center}
+.btn{display:inline-block;margin:10px;padding:10px 20px;background:#7c3aed;color:#fff;text-decoration:none;border-radius:6px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.card{background:#f7f7f7;padding:20px;border-radius:10px;text-align:center}
+table{width:100%;border-collapse:collapse}
+th,td{border:1px solid #ccc;padding:12px;text-align:center}
+th{background:#8b5cf6;color:#fff}
+input,textarea{width:100%;padding:10px;margin:8px 0}
+button{width:100%;padding:12px;background:#7c3aed;color:#fff;border:none;border-radius:6px}
+footer{background:#7c3aed;color:#fff;text-align:center;padding:20px;margin-top:20px}
+#topBtn{display:none;position:fixed;right:20px;bottom:20px;background:#7c3aed;color:#fff;border:none;border-radius:50%;padding:14px;cursor:pointer}
+@media(max-width:768px){header{flex-direction:column}nav{display:flex;flex-direction:column;align-items:center}}
+</style>
+</head>
+<body>
+<header>
+<h2>Kella prabhas</h2>
+<nav>
+<a href="#home">Home</a><a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#education">Education</a><a href="#certifications">Certifications</a><a href="#contact">Contact</a>
+</nav>
+</header>
+
+<section id="home" class="hero">
+<h1>Welcome</h1>
+<p>Hello! I'm a second-Year CSE Student passionate about Web Development.</p>
+<a class="btn" href="#contact">Hire Me</a>
+<a class="btn" href="#">Download Resume</a>
+</section>
+
+<section id="about">
+<h2>About Me</h2>
+<p>I am pursuing B.Tech (CSE) at Pydah College of Engineering. I enjoy learning HTML, CSS and JavaScript and building responsive websites.
+I am eager to learn and grow in the field of web development, and I am committed to creating user-friendly and visually appealing websites.i am a quick learner and a team player, always ready to take on new challenges and contribute to the success of any project.
+ i enjoy collaborating with others and believe that the best results come from working together. I am excited to continue developing my skills and knowledge in web development and look forward to contributing to innovative projects in the future.
+</p>
+</section>
+
+<section id="skills">
+<h2>Technical & Soft Skills</h2>
+<div class="grid">
+<div class="card">HTML</div>
+<div class="card">CSS</div>
+<div class="card">JavaScript</div>
+<div class="card">Responsive Design</div>
+<div class="card">Communication</div>
+<div class="card">Leadership</div>
+<div class="card">Problem Solving</div>
+<div class="card">Team Work</div>
+</div>
+</section>
+
+<section id="projects">
+<h2>Projects</h2>
+<div class="card"><h3>Portfolio Website</h3><p>Responsive portfolio using HTML, CSS & JavaScript.</p></div><br>
+<div class="card"><h3>Enquiry Form</h3><p>Simple contact form project.</p></div>
+</section>
+
+<section>
+<h2>Certifications</h2>
+<table>
+<tr><th>Course</th><th>Organization</th><th>Year</th></tr>
+<tr><td>My SQL learnathon</td><td>oracle Academy</td><td>2025</td></tr>
+<tr><td>Introduction to Cyber Security</td><td>Cisco Networking Academy</td><td>2026</td></tr>
+<tr><td>Data analytics</td><td>Deloitte</td><td>2026</td></tr>
+<tr><td>Operations Industrial Engineer</td><td>Siemens</td><td>2026</td></tr>
+<tr><td>Foundations of prompt engineering</td><td>AWS</td><td>2026</td></tr>
+</table>
+</section>
+
+<section id="education">
+<h2>Education</h2>
+<table>
+<tr><th>Qualification</th><th>Institution</th><th>Year</th></tr>
+<tr><td>B.Tech (CSE)</td><td>Pydah College of Engineering</td><td>2025-2029</td></tr>
+<tr><td>Intermediate</td><td>deeksha Junior College</td><td>2023-2025</td></tr>
+<tr><td>SSC</td><td>Ravindra bharathi School</td><td>2022-2023</td></tr>
+</table>
+</section>
+
+<section id="statistics">
+<h2>Statistics</h2>
+<div class="grid">
+<div class="card"><h1>5+</h1><p>Projects</p></div>
+<div class="card"><h1>15+</h1><p>Certificates</p></div>
+<div class="card"><h1>100%</h1><p>Learning</p></div>
+</div>
+</section>
+
+<section id="certifications">
+<h2>Certifications</h2>
+<ul><li>HTML & CSS</li><li>JavaScript Basics</li><li>Responsive Web Design</li></ul>
+</section>
+
+<section id="contact">
+<h2>Contact Me</h2>
+<input type="text" placeholder="Your Name">
+<input type="email" placeholder="Your Email">
+<textarea rows="5" placeholder="Message"></textarea>
+<button>Send</button>
+<p><b>Email:</b> kellaprabhas@gmail.com</p>
+<p><b>LinkedIn:</b> www.linkedin.com/in/
+kella-prabhas-1b506529a
+</p>
+</section>
+
+<footer>© 2026 Kella prabhas | All Rights Reserved.</footer>
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+let b=document.getElementById("topBtn");
+window.onscroll=()=>{b.style.display=window.scrollY>200?"block":"none";}
+</script>
+</body>
+</html>
