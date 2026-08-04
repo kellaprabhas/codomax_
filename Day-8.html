@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio - Kella prabhas</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;scroll-behavior:smooth}
+body{background:#7da2ed;color:#333;padding-top:0}
+header{position:fixed;top:0;width:100%;background:#9162f6;color:#edeae8;z-index:1000}
+nav{display:flex;justify-content:space-between;align-items:center;padding:15px 8%}
+nav ul{display:flex;list-style:none;gap:18px;flex-wrap:wrap}
+nav a{color:#f0efebbf;text-decoration:none}
+.hero{min-height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(#d8ecff,#fff);text-align:center;padding:20px}
+.hero h1{font-size:42px}
+.btn{display:inline-block;margin-top:20px;background:#231e23;color:#fff;padding:12px 25px;border-radius:6px;text-decoration:none}
+section{padding:90px 8%}
+.hero{margin-top:0}
+section[id]{scroll-margin-top:80px}
+h2{text-align:center;color:#161616;margin-bottom:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px}
+.card,.project,.stat{background:#fff;padding:20px;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,.15);text-align:center}
+.projects-section{padding:90px 8%}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.project-card{background:linear-gradient(135deg,#ffffff,#f8f7ff);padding:24px;border-radius:14px;box-shadow:0 8px 20px rgba(0,0,0,.12);border:1px solid #e7defd;transition:transform .2s ease,box-shadow .2s ease;display:flex;flex-direction:column;gap:10px}
+.project-card:hover{transform:translateY(-6px);box-shadow:0 12px 24px rgba(0,0,0,.16)}
+.project-card h3{margin-bottom:0;color:#4b2e83;font-size:20px;display:flex;align-items:center;justify-content:center;gap:8px}
+.project-card p{color:#5b5b5b;line-height:1.6}
+table{width:100%;border-collapse:collapse;background:#fff}
+th,td{border:1px solid #ddd;padding:12px;text-align:center}
+th{background:#7d7fea;color:#fff}
+form{max-width:700px;margin:auto}
+input,textarea{width:100%;padding:12px;margin:10px 0}
+button{padding:12px;width:100%;background:#c27ab8;color:#fff;border:none}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px}
+footer{background:#1a1819;color:#fff;text-align:center;padding:18px}
+@media(max-width:768px){nav{flex-direction:column}.hero h1{font-size:30px}}
+</style>
+</head>
+<body>
+<header>
+<nav>
+<h2>kella prabhas</h2>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#education">Education</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+</header>
+
+<section class="hero" id="home">
+<div>
+<h1>Hello, I'm Kella prabhas</h1>
+<p>Future Web Developer | CSE Student | Responsive Web Design</p>
+<a class="btn" href="#about">Know More</a>
+</div>
+</section>
+
+<section id="about">
+<h2>About Me</h2>
+<p style="text-align:center">I am a Computer Science Engineering student passionate about web development, responsive layouts, HTML, CSS and JavaScript.
+    I am eager to learn and grow in the field of web development, and I am committed to creating user-friendly and visually appealing websites.i am a quick learner and a team player, always ready to take on new challenges and contribute to the success of any project.
+    i enjoy collaborating with others and believe that the best results come from working together. I am excited to continue developing my skills and knowledge in web development and look forward to contributing to innovative projects in the future.
+</p>
+</section>
+
+<section id="skills">
+<h2>Technical Skills</h2>
+<div class="grid">
+<div class="card">HTML5</div>
+<div class="card">CSS3</div>
+<div class="card">JavaScript(learning)</div>
+<div class="card">GitHub</div>
+<div class="card">Responsive Design</div>
+<div class="card">CSS Grid & Flexbox</div>
+</div>
+</section>
+
+<section>
+<h2>Soft Skills</h2>
+<div class="grid">
+<div class="card">Communication</div>
+<div class="card">Leadership</div>
+<div class="card">Problem Solving</div>
+<div class="card">Team Work</div>
+</div>
+</section>
+
+<section id="projects" class="projects-section">
+<h2>Projects</h2>
+<div class="projects-grid">
+  <div class="project-card">
+    <h3>📝 To-Do List App</h3>
+    <p>It gives information about daily tasks without any external dependencies.</p>
+  </div>
+  <div class="project-card">
+    <h3>🌦️ Weather App</h3>
+    <p>Created a simple weather application using HTML, CSS, and JavaScript to display current weather information.</p>
+  </div>
+  <div class="project-card">
+    <h3>⏱️ Stopwatch App</h3>
+    <p>Created a simple stopwatch application using HTML, CSS, and JavaScript to track elapsed time.</p>
+  </div>
+</div>
+</section>
+
+<section>
+<h2>Certifications</h2>
+<table>
+<tr><th>Course</th><th>Organization</th><th>Year</th></tr>
+<tr><td>My SQL learnathon</td><td>oracle Academy</td><td>2025</td></tr>
+<tr><td>Introduction to Cyber Security</td><td>Cisco Networking Academy</td><td>2026</td></tr>
+<tr><td>Data analytics</td><td>Deloitte</td><td>2026</td></tr>
+<tr><td>Operations Industrial Engineer</td><td>Siemens</td><td>2026</td></tr>
+<tr><td>Foundations of prompt engineering</td><td>AWS</td><td>2026</td></tr>
+</table>
+</section>
+
+<section>
+    <h2>HACKATHONS</h2>
+    <table>
+    <tr>
+        <th>Hackathon Name</th>
+        <th>Organization</th>
+        <th>Year</th>
+    </tr>
+    <tr>
+        <th>code strom</th>
+        <th>quantum coders club</th>
+        <th>2026</th>
+    </tr>
+</table>
+</section>
+<section id="education">
+<h2>Education</h2>
+<table>
+<tr><th>Qualification</th><th>Institution</th><th>Year</th></tr>
+<tr><td>B.Tech (CSE)</td><td>Pydah College of Engineering</td><td>2025-2029</td></tr>
+<tr><td>Intermediate</td><td>deeksha Junior College</td><td>2023-2025</td></tr>
+<tr><td>SSC</td><td>Ravindra bharathi School</td><td>2022-2023</td></tr>
+</table>
+</section>
+
+<section>
+<h2>Statistics</h2>
+<div class="stats">
+<div class="stat"><h3>5+</h3><p>Projects</p></div>
+<div class="stat"><h3>15+</h3><p>Certificates</p></div>
+<div class="stat"><h3>100%</h3><p>Dedication</p></div>
+</div>
+</section>
+
+<section id="contact">
+<h2>Contact Me</h2>
+<form onsubmit="event.preventDefault();alert('Message Sent Successfully!');">
+<input type="text" name="name" placeholder="Full Name" required>
+<input type="email" name="email" placeholder="Email" required>
+<textarea name="message" placeholder="Message" required></textarea>
+<button type="submit">Send Message</button>
+</form>
+</section>
+
+<footer>© 2026 Kella prabhas | Portfolio</footer>
+
+<script>
+window.addEventListener("scroll",()=>{
+document.querySelector("header").style.boxShadow=window.scrollY>20?"0 3px 10px rgba(0,0,0,.3)":"none";
+});
+</script>
+</body>
+</html>
