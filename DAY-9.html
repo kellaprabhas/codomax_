@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio - Kella prabhas</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;scroll-behavior:smooth}
+body{background:#7da2ed;color:#333;padding-top:0}
+.project-modal{position:fixed;inset:0;background:rgba(0,0,0,0.78);display:none;align-items:center;justify-content:center;padding:20px;z-index:3000}
+.project-modal.active{display:flex}
+.project-modal-content{background:#fff;border-radius:16px;padding:20px;max-width:700px;width:100%;box-shadow:0 12px 40px rgba(0,0,0,0.25)}
+.project-modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.project-modal-close{border:none;background:#f1f1f1;color:#333;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px}
+.project-output{background:linear-gradient(135deg,#f9fbff,#eef4ff);border:1px solid #d9e4ff;border-radius:12px;padding:18px;min-height:180px;display:flex;align-items:center;justify-content:center}
+.project-output-box{width:100%;background:#fff;border-radius:10px;padding:14px;box-shadow:inset 0 0 0 1px #e7ebf5}
+.project-output-title{font-weight:bold;color:#4b2e83;margin-bottom:8px}
+.project-output-list{display:flex;flex-direction:column;gap:8px;font-size:14px;color:#444}
+.project-output-list span{background:#f7f7ff;padding:8px;border-radius:6px}
+.project-output-weather{font-size:24px;font-weight:bold;color:#2563eb;text-align:center}
+.project-output-stopwatch{font-size:28px;font-weight:bold;color:#0f766e;text-align:center}
+.project-output-buttons{display:flex;justify-content:center;gap:10px;margin-top:10px}
+.project-output-buttons span{padding:6px 10px;border-radius:6px;background:#e2f5f2;color:#0f766e;font-size:13px}
+.project-output-todo{display:flex;flex-direction:column;gap:10px}
+.todo-input-row{display:flex;gap:8px}
+.todo-input-row input{flex:1;padding:8px 10px;border:1px solid #d0d7e2;border-radius:8px}
+.todo-input-row button{width:auto;padding:8px 12px;border:none;border-radius:8px;background:#4f46e5;color:#fff;cursor:pointer}
+.todo-list{display:flex;flex-direction:column;gap:8px}
+.todo-item{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-radius:8px;background:#f7f9ff;border:1px solid #e2e8f0}
+.todo-item.completed span{color:#64748b;text-decoration:line-through}
+.todo-item label{display:flex;align-items:center;gap:8px;cursor:pointer;flex:1}
+.todo-delete{width:auto;padding:4px 8px;border-radius:6px;background:#ef4444;color:#fff;font-size:12px}
+.weather-search{display:flex;gap:8px;margin-bottom:10px}
+.weather-search input{flex:1;padding:8px 10px;border:1px solid #d0d7e2;border-radius:8px}
+.weather-search button{width:auto;padding:8px 12px;border:none;border-radius:8px;background:#2563eb;color:#fff;cursor:pointer}
+.weather-card{background:linear-gradient(135deg,#eff6ff,#f8fafc);border:1px solid #dbeafe;border-radius:12px;padding:14px;text-align:center}
+.weather-temp{font-size:28px;font-weight:bold;color:#1d4ed8}
+.weather-condition{font-size:16px;color:#334155;margin-top:6px}
+.stopwatch-display{font-size:44px;font-weight:bold;color:#0f766e;text-align:center;font-variant-numeric:tabular-nums}
+.stopwatch-controls{display:flex;justify-content:center;gap:10px;margin-top:12px;flex-wrap:wrap}
+.stopwatch-controls button{width:auto;padding:8px 14px;border:none;border-radius:999px;background:#0f766e;color:#fff;cursor:pointer}
+.stopwatch-controls button.reset{background:#f59e0b}
+.stopwatch-laps{margin-top:10px;display:flex;flex-direction:column;gap:6px;max-height:120px;overflow:auto}
+.stopwatch-lap{padding:6px 8px;border-radius:6px;background:#f7f7f7;font-size:13px;color:#444}
+header{position:fixed;top:0;width:100%;background:#9162f6;color:#edeae8;z-index:1000}
+nav{display:flex;justify-content:space-between;align-items:center;padding:15px 8%}
+nav ul{display:flex;list-style:none;gap:18px;flex-wrap:wrap}
+nav a{color:#f0efebbf;text-decoration:none}
+.hero{min-height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(#d8ecff,#fff);padding:20px}
+.hero-content{max-width:1100px;width:100%;display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:32px}
+.hero-text{flex:1;min-width:300px;text-align:left}
+.hero h1{font-size:42px;margin-bottom:10px}
+.hero-intro{font-size:18px;line-height:1.7;color:#444;max-width:620px;margin-top:10px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.hero-actions .btn{margin-top:0}
+.hire-btn{background:linear-gradient(135deg,#ff6f61,#e74c3c)}
+.btn{display:inline-block;margin-top:20px;background:#231e23;color:#fff;padding:12px 25px;border-radius:6px;text-decoration:none}
+section{padding:90px 8%}
+.hero{margin-top:0}
+section[id]{scroll-margin-top:80px}
+h2{text-align:center;color:#161616;margin-bottom:20px}
+.skills{display:flex;justify-content:center;flex-wrap:wrap;gap:15px;margin-top:20px}
+.skills span{background:#007BFF;color:white;padding:10px 20px;border-radius:20px;font-weight:bold}
+.resume-section{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;margin-top:30px;padding-bottom:20px;gap:10px}
+.resume-btn{display:inline-block;margin-top:8px;padding:14px 28px;background:linear-gradient(135deg,#28a745,#1f8b3d);color:white;text-decoration:none;border-radius:999px;transition:0.3s;box-shadow:0 6px 16px rgba(40,167,69,0.25)}
+.resume-btn:hover{background:linear-gradient(135deg,#218838,#196c2f);transform:translateY(-2px)}
+.resume-modal{position:fixed;inset:0;background:rgba(0,0,0,0.75);display:none;align-items:center;justify-content:center;padding:20px;z-index:2000}
+.resume-modal.active{display:flex}
+.resume-modal-content{position:relative;max-width:900px;width:100%;background:#fff;border-radius:16px;padding:16px;box-shadow:0 12px 40px rgba(0,0,0,0.25)}
+.resume-modal img{width:100%;height:auto;max-height:80vh;object-fit:contain;border-radius:10px}
+.resume-close{position:absolute;top:10px;right:10px;background:#fff;color:#333;border:none;border-radius:50%;width:36px;height:36px;cursor:pointer;font-size:20px;box-shadow:0 2px 8px rgba(0,0,0,0.15)}
+.exp-card{max-width:600px;margin:20px auto;padding:20px;border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,0.15);background:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px}
+.card,.project,.stat{background:#fff;padding:20px;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,.15);text-align:center}
+.projects-section{padding:90px 8%}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.project-card{background:linear-gradient(135deg,#ffffff,#f8f7ff);padding:24px;border-radius:14px;box-shadow:0 8px 20px rgba(0,0,0,.12);border:1px solid #e7defd;transition:transform .2s ease,box-shadow .2s ease;display:flex;flex-direction:column;gap:12px}
+.project-card:hover{transform:translateY(-6px);box-shadow:0 12px 24px rgba(0,0,0,.16)}
+.project-card h3{margin-bottom:0;color:#4b2e83;font-size:20px;display:flex;align-items:center;justify-content:center;gap:8px}
+.project-card p{color:#5b5b5b;line-height:1.6;margin:0}
+.project-preview{background:linear-gradient(135deg,#eef4ff,#f7f3ff);border:1px dashed #b8aef0;border-radius:10px;padding:12px;min-height:110px;display:flex;align-items:center;justify-content:center}
+.project-preview-window{width:100%;background:#fff;border-radius:8px;padding:10px;box-shadow:inset 0 0 0 1px #e8e2fb}
+.preview-badge{display:inline-block;padding:4px 8px;border-radius:999px;background:#7c4dff;color:#fff;font-size:11px;font-weight:bold;margin-bottom:8px}
+.preview-list{display:flex;flex-direction:column;gap:6px;font-size:13px;color:#444}
+.preview-list span{padding:6px 8px;border-radius:6px;background:#f7f7ff}
+.preview-weather{font-size:20px;font-weight:bold;color:#2563eb;text-align:center}
+.preview-stopwatch{font-size:22px;font-weight:bold;color:#0f766e;text-align:center}
+.preview-buttons{display:flex;justify-content:center;gap:8px;margin-top:8px}
+.preview-buttons span{padding:5px 8px;border-radius:6px;background:#e2f5f2;color:#0f766e;font-size:12px}
+table{width:100%;border-collapse:collapse;background:#fff}
+th,td{border:1px solid #ddd;padding:12px;text-align:center}
+th{background:#7d7fea;color:#fff}
+form{max-width:700px;margin:auto}
+input,textarea{width:100%;padding:12px;margin:10px 0}
+button{padding:12px;width:100%;background:#c27ab8;color:#fff;border:none}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px}
+footer{background:#1a1819;color:#fff;text-align:center;padding:18px}
+@media(max-width:768px){nav{flex-direction:column}.hero h1{font-size:30px}}
+</style>
+</head>
+<body>
+<header>
+<nav>
+<h2>kella prabhas</h2>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#education">Education</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+</header>
+
+<section class="hero" id="home">
+<div class="hero-content">
+<div class="hero-text">
+<h1>Hello, I'm Kella Prabhas</h1>
+<p class="hero-intro">Hi, I am Kella Prabhas. I am a CSE student, and I am passionate about learning skills, improving my knowledge, and creating meaningful projects with dedication and curiosity.</p>
+<div class="hero-actions">
+    <a class="btn" href="#about">Know More</a>
+    <a class="btn hire-btn" href="#contact">Hire Me</a>
+    <a id="resume-link" href="resume-image.png" class="btn resume-btn">Download Resume</a>
+</div>
+</div>
+</div>
+</section>
+
+<section id="about">
+<h2>About Me</h2>
+<p style="text-align:center">I am a Computer Science Engineering student passionate about web development, responsive layouts, HTML, CSS and JavaScript.
+    I am eager to learn and grow in the field of web development, and I am committed to creating user-friendly and visually appealing websites.i am a quick learner and a team player, always ready to take on new challenges and contribute to the success of any project.
+    i enjoy collaborating with others and believe that the best results come from working together. I am excited to continue developing my skills and knowledge in web development and look forward to contributing to innovative projects in the future.
+</p>
+</section>
+
+<section id="skills">
+<h2>My Skills</h2>
+<div class="skills">
+<span>HTML</span>
+<span>CSS</span>
+<span>JavaScript</span>
+<span>Responsive Design</span>
+<span>Git & GitHub</span>
+</div>
+</section>
+
+<section id="experience">
+<h2>Experience</h2>
+<div class="exp-card">
+<h3>Frontend Web Development Intern</h3>
+<p><strong>Codomax Digital Solutions</strong></p>
+<p>Learning HTML, CSS, JavaScript, Responsive Design, GitHub and building portfolio projects through a 14-day internship.</p>
+</div>
+</section>
+
+<section>
+<h2>Soft Skills</h2>
+<div class="grid">
+<div class="card">Communication</div>
+<div class="card">Leadership</div>
+<div class="card">Problem Solving</div>
+<div class="card">Team Work</div>
+</div>
+</section>
+
+<section id="projects" class="projects-section">
+<h2>My Projects</h2>
+<p style="text-align:center;color:#555;margin-bottom:24px;">Here are the three projects I built and want to showcase.</p>
+<div class="projects-grid">
+  <div class="project-card" data-project="todo">
+    <h3>📝 To-Do List App</h3>
+    <p>A simple task manager that helps users organize daily activities.</p>
+    <div class="project-preview">
+      <div class="project-preview-window">
+        <span class="preview-badge">Output</span>
+        <div class="preview-list">
+          <span>✓ Add task</span>
+          <span>✓ Mark completed</span>
+          <span>✓ Delete task</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="project-card" data-project="weather">
+    <h3>🌦️ Weather App</h3>
+    <p>A web app that shows current weather details using HTML, CSS, and JavaScript.</p>
+    <div class="project-preview">
+      <div class="project-preview-window">
+        <span class="preview-badge">Output</span>
+        <div class="preview-weather">🌤️ 28°C<br><small>Sunny Day</small></div>
+      </div>
+    </div>
+  </div>
+  <div class="project-card" data-project="stopwatch">
+    <h3>⏱️ Stopwatch App</h3>
+    <p>A small interactive timer app to start, pause, and reset time.</p>
+    <div class="project-preview">
+      <div class="project-preview-window">
+        <span class="preview-badge">Output</span>
+        <div class="preview-stopwatch">00:00:15</div>
+        <div class="preview-buttons"><span>Start</span><span>Reset</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section> 
+
+<section>
+<h2>Certifications</h2>
+<table>
+<tr><th>Course</th><th>Organization</th><th>Year</th></tr>
+<tr><td>My SQL learnathon</td><td>oracle Academy</td><td>2025</td></tr>
+<tr><td>Introduction to Cyber Security</td><td>Cisco Networking Academy</td><td>2026</td></tr>
+<tr><td>Data analytics</td><td>Deloitte</td><td>2026</td></tr>
+<tr><td>Operations Industrial Engineer</td><td>Siemens</td><td>2026</td></tr>
+<tr><td>Foundations of prompt engineering</td><td>AWS</td><td>2026</td></tr>
+</table>
+</section>
+
+<section>
+    <h2>HACKATHONS</h2>
+    <table>
+    <tr>
+        <th>Hackathon Name</th>
+        <th>Organization</th>
+        <th>Year</th>
+    </tr>
+    <tr>
+        <th>code strom</th>
+        <th>quantum coders club</th>
+        <th>2026</th>
+    </tr>
+</table>
+</section>
+<section id="education">
+<h2>Education</h2>
+<table>
+    <tr><th>Qualification</th><th>Institution</th><th>Year</th></tr>
+    <tr><td>B.Tech (CSE)</td><td>Pydah College of Engineering</td><td>2025-2029</td></tr>
+    <tr><td>Intermediate</td><td>Deeksha Junior College</td><td>2023-2025</td></tr>
+    <tr><td>SSC</td><td>Ravindra Bharathi School</td><td>2022-2023</td></tr>
+</table>
+</section>
+
+<section>
+<h2>Statistics</h2>
+<div class="stats">
+<div class="stat"><h3>5+</h3><p>Projects</p></div>
+<div class="stat"><h3>15+</h3><p>Certificates</p></div>
+<div class="stat"><h3>100%</h3><p>Dedication</p></div>
+</div>
+</section>
+
+<section id="contact">
+<h2>Contact Me</h2>
+<form onsubmit="event.preventDefault();alert('Message Sent Successfully!');">
+<input type="text" name="name" placeholder="Full Name" required>
+<input type="email" name="email" placeholder="Email" required>
+<textarea name="message" placeholder="Message" required></textarea>
+<button type="submit">Send Message</button>
+</form>
+</section>
+
+<footer>© 2026 Kella prabhas | Portfolio</footer>
+
+<div class="resume-modal" id="resume-modal">
+<div class="resume-modal-content">
+  <button class="resume-close" id="resume-close" aria-label="Close resume">×</button>
+  <img src="resume-image.png" alt="Resume preview">
+</div>
+</div>
+
+<div class="project-modal" id="project-modal">
+  <div class="project-modal-content">
+    <div class="project-modal-header">
+      <h3 id="project-modal-title">Project Output</h3>
+      <button class="project-modal-close" id="project-modal-close" aria-label="Close project">×</button>
+    </div>
+    <div class="project-output" id="project-output"></div>
+  </div>
+</div>
+
+<script>
+window.addEventListener("scroll",()=>{
+document.querySelector("header").style.boxShadow=window.scrollY>20?"0 3px 10px rgba(0,0,0,.3)":"none";
+});
+
+const resumeLink = document.getElementById("resume-link");
+const resumeModal = document.getElementById("resume-modal");
+const resumeClose = document.getElementById("resume-close");
+const projectModal = document.getElementById("project-modal");
+const projectModalClose = document.getElementById("project-modal-close");
+const projectModalTitle = document.getElementById("project-modal-title");
+const projectOutput = document.getElementById("project-output");
+const projectCards = document.querySelectorAll(".project-card");
+
+let todoItems = [
+  { text: "Study HTML", done: true },
+  { text: "Practice CSS", done: true },
+  { text: "Build JavaScript app", done: false }
+];
+
+let stopwatchState = {
+  timer: null,
+  elapsed: 0,
+  running: false,
+  laps: []
+};
+
+const weatherData = {
+  hyderabad: { temp: 29, condition: "Sunny", emoji: "☀️" },
+  delhi: { temp: 34, condition: "Hot", emoji: "🌤️" },
+  mumbai: { temp: 31, condition: "Cloudy", emoji: "☁️" },
+  london: { temp: 18, condition: "Rainy", emoji: "🌧️" },
+  newyork: { temp: 24, condition: "Windy", emoji: "💨" }
+};
+
+function escapeHtml(text) {
+  return String(text)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function formatStopwatch(ms) {
+  const totalSeconds = Math.floor(ms / 1000);
+  const minutes = String(Math.floor(totalSeconds / 60)).padStart(2, "0");
+  const seconds = String(totalSeconds % 60).padStart(2, "0");
+  const centiseconds = String(Math.floor((ms % 1000) / 10)).padStart(2, "0");
+  return `${minutes}:${seconds}.${centiseconds}`;
+}
+
+function stopStopwatch() {
+  if (stopwatchState.timer) {
+    clearInterval(stopwatchState.timer);
+  }
+  stopwatchState.timer = null;
+  stopwatchState.running = false;
+}
+
+function renderTodoDemo() {
+  projectOutput.innerHTML = `
+    <div class="project-output-box">
+      <div class="project-output-title">Task List Preview</div>
+      <div class="project-output-todo">
+        <div class="todo-input-row">
+          <input type="text" id="todo-input" placeholder="Add a new task">
+          <button id="todo-add">Add</button>
+        </div>
+        <div class="todo-list" id="todo-list"></div>
+      </div>
+    </div>`;
+
+  const todoList = document.getElementById("todo-list");
+  const todoInput = document.getElementById("todo-input");
+  const todoAdd = document.getElementById("todo-add");
+
+  function renderTodoList() {
+    todoList.innerHTML = todoItems.map((item, index) => `
+      <div class="todo-item ${item.done ? "completed" : ""}">
+        <label>
+          <input type="checkbox" data-index="${index}" ${item.done ? "checked" : ""}>
+          <span>${escapeHtml(item.text)}</span>
+        </label>
+        <button class="todo-delete" data-index="${index}">Delete</button>
+      </div>
+    `).join("");
+  }
+
+  function addTodo() {
+    const value = todoInput.value.trim();
+    if (!value) return;
+    todoItems.push({ text: value, done: false });
+    todoInput.value = "";
+    renderTodoList();
+  }
+
+  todoAdd.addEventListener("click", addTodo);
+  todoInput.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      addTodo();
+    }
+  });
+
+  todoList.addEventListener("change", function (event) {
+    if (event.target.matches("input[type='checkbox']")) {
+      const index = Number(event.target.getAttribute("data-index"));
+      todoItems[index].done = event.target.checked;
+      renderTodoList();
+    }
+  });
+
+  todoList.addEventListener("click", function (event) {
+    if (event.target.matches(".todo-delete")) {
+      const index = Number(event.target.getAttribute("data-index"));
+      todoItems.splice(index, 1);
+      renderTodoList();
+    }
+  });
+
+  renderTodoList();
+}
+
+function renderWeatherDemo() {
+  projectOutput.innerHTML = `
+    <div class="project-output-box">
+      <div class="project-output-title">Weather Preview</div>
+      <div class="weather-search">
+        <input type="text" id="weather-input" placeholder="Enter a city">
+        <button id="weather-search">Search</button>
+      </div>
+      <div class="weather-card" id="weather-card"></div>
+    </div>`;
+
+  const weatherInput = document.getElementById("weather-input");
+  const weatherSearch = document.getElementById("weather-search");
+  const weatherCard = document.getElementById("weather-card");
+
+  function updateWeather(city) {
+    const key = city.trim().toLowerCase();
+    const data = weatherData[key];
+    if (data) {
+      weatherCard.innerHTML = `
+        <div>${data.emoji}</div>
+        <div class="weather-temp">${data.temp}°C</div>
+        <div class="weather-condition">${data.condition}</div>
+      `;
+    } else {
+      weatherCard.innerHTML = `
+        <div>🌈</div>
+        <div class="weather-temp">--</div>
+        <div class="weather-condition">City not found. Try Hyderabad, Delhi, Mumbai, London, or New York.</div>
+      `;
+    }
+  }
+
+  weatherSearch.addEventListener("click", function () {
+    updateWeather(weatherInput.value || "Hyderabad");
+  });
+
+  weatherInput.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      updateWeather(weatherInput.value || "Hyderabad");
+    }
+  });
+
+  updateWeather("Hyderabad");
+}
+
+function renderStopwatchDemo() {
+  projectOutput.innerHTML = `
+    <div class="project-output-box">
+      <div class="project-output-title">Stopwatch Demo</div>
+      <div class="stopwatch-display" id="stopwatch-display">00:00.00</div>
+      <div class="stopwatch-controls">
+        <button id="stopwatch-toggle">Start</button>
+        <button id="stopwatch-lap" class="reset">Lap</button>
+        <button id="stopwatch-reset" class="reset">Reset</button>
+      </div>
+      <div class="stopwatch-laps" id="stopwatch-laps"></div>
+    </div>`;
+
+  const display = document.getElementById("stopwatch-display");
+  const toggle = document.getElementById("stopwatch-toggle");
+  const lapButton = document.getElementById("stopwatch-lap");
+  const resetButton = document.getElementById("stopwatch-reset");
+  const lapsContainer = document.getElementById("stopwatch-laps");
+
+  function updateDisplay() {
+    display.textContent = formatStopwatch(stopwatchState.elapsed);
+  }
+
+  function updateLaps() {
+    lapsContainer.innerHTML = stopwatchState.laps.length
+      ? stopwatchState.laps.map((lap, index) => `<div class="stopwatch-lap">Lap ${index + 1}: ${lap}</div>`).join("")
+      : "";
+  }
+
+  function updateButtons() {
+    toggle.textContent = stopwatchState.running ? "Pause" : "Start";
+    lapButton.disabled = !stopwatchState.running && stopwatchState.elapsed === 0;
+  }
+
+  function startStopwatch() {
+    if (stopwatchState.running) {
+      stopStopwatch();
+      updateButtons();
+      return;
+    }
+    stopwatchState.running = true;
+    stopwatchState.timer = setInterval(function () {
+      stopwatchState.elapsed += 10;
+      updateDisplay();
+    }, 10);
+    updateButtons();
+  }
+
+  function resetStopwatch() {
+    stopStopwatch();
+    stopwatchState.elapsed = 0;
+    stopwatchState.laps = [];
+    updateDisplay();
+    updateLaps();
+    updateButtons();
+  }
+
+  function addLap() {
+    if (!stopwatchState.running) return;
+    stopwatchState.laps.push(formatStopwatch(stopwatchState.elapsed));
+    updateLaps();
+  }
+
+  toggle.addEventListener("click", startStopwatch);
+  resetButton.addEventListener("click", resetStopwatch);
+  lapButton.addEventListener("click", addLap);
+
+  stopwatchState.elapsed = 0;
+  stopwatchState.laps = [];
+  updateDisplay();
+  updateLaps();
+  updateButtons();
+}
+
+if (resumeLink && resumeModal) {
+resumeLink.addEventListener("click", function (event) {
+  event.preventDefault();
+  resumeModal.classList.add("active");
+});
+}
+
+if (resumeClose && resumeModal) {
+resumeClose.addEventListener("click", function () {
+  resumeModal.classList.remove("active");
+});
+}
+
+if (resumeModal) {
+resumeModal.addEventListener("click", function (event) {
+  if (event.target === resumeModal) {
+    resumeModal.classList.remove("active");
+  }
+});
+}
+
+if (projectModalClose && projectModal) {
+projectModalClose.addEventListener("click", function () {
+  stopStopwatch();
+  projectModal.classList.remove("active");
+});
+}
+
+if (projectModal) {
+projectModal.addEventListener("click", function (event) {
+  if (event.target === projectModal) {
+    stopStopwatch();
+    projectModal.classList.remove("active");
+  }
+});
+}
+
+projectCards.forEach(function (card) {
+card.addEventListener("click", function () {
+  const type = card.getAttribute("data-project");
+  stopStopwatch();
+  if (type === "todo") {
+    projectModalTitle.textContent = "To-Do List App Output";
+    renderTodoDemo();
+  } else if (type === "weather") {
+    projectModalTitle.textContent = "Weather App Output";
+    renderWeatherDemo();
+  } else if (type === "stopwatch") {
+    projectModalTitle.textContent = "Stopwatch App Output";
+    renderStopwatchDemo();
+  }
+  projectModal.classList.add("active");
+});
+});
+
+document.addEventListener("keydown", function (event) {
+if (event.key === "Escape") {
+  stopStopwatch();
+  resumeModal.classList.remove("active");
+  projectModal.classList.remove("active");
+}
+});
+</script>
+</body> 
+</html>
